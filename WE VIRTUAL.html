@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word English - Aprende Inglés</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul-claro: #A3D4F7;
+      --turquesa: #1CA9C9;
+      --azul-oscuro: #002C47;
+      --amarillo: #F7B500;
+      --naranja: #F77F00;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Raleway", sans-serif;
+    }
+
+    body {
+      background-color: #fff;
+      color: var(--azul-oscuro);
+      overflow-x: hidden;
+    }
+
+    .social-floating {
+      position: fixed;
+      top: 50%;
+      left: 20px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 999;
+    }
+
+    .social-floating a {
+      background-color: white;
+      padding: 10px;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, background 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .social-floating a:hover {
+      transform: scale(1.2) rotate(10deg);
+      background-color: var(--turquesa);
+    }
+
+    .social-floating img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .header {
+      background: linear-gradient(180deg, var(--azul-oscuro), #001a2d);
+      color: white;
+      padding: 10px 0;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+      animation: fadeDown 1s ease-in-out;
+      position: relative;
+      z-index: 1000;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .logo {
+      height: 80px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .nav a:hover {
+      transform: scale(1.1);
+    }
+
+    .hero {
+      background: linear-gradient(
+        rgba(247, 181, 0, 0.85), 
+        rgba(163, 212, 247, 0.85)
+      ),
+      url('https://c.pxhere.com/photos/6d/ff/westminster_london_england_british_palace_city_travel_english-1074285.jpg!d') center/cover no-repeat;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--azul-oscuro);
+      border-bottom-left-radius: 50px;
+      border-bottom-right-radius: 50px;
+      animation: fadeUp 1.2s ease-in-out;
+      position: relative;
+      padding: 0;
+      margin-top: -80px;
+      padding-top: 80px;
+      z-index: 2;
+    }
+
+    .hero .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 30px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .hero-content {
+      flex: 1;
+      text-align: left;
+    }
+
+    .hero-image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-image img {
+      max-width: 100%;
+      height: auto;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .hero .container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      .hero-image {
+        order: -1;
+      }
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      margin-bottom: 25px;
+      line-height: 1.2;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 40px;
+      opacity: 0.9;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-cta {
+      background-color: var(--naranja);
+      color: white;
+      padding: 20px 50px;
+      border: none;
+      border-radius: 35px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.4rem;
+      transition: all 0.3s ease;
+      display: inline-block;
+      box-shadow: 0 4px 15px rgba(247, 127, 0, 0.3);
+    }
+
+    .btn-cta:hover {
+      background-color: #e76f00;
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(247, 127, 0, 0.4);
+    }
+
+    .benefits {
+      background: linear-gradient(180deg, var(--azul-claro), white);
+      min-height: 100vh;
+      margin-top: -50px;
+      border-radius: 50px 50px 0 0;
+      animation: fadeUp 1.2s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 20px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .benefits::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://cdn.pixabay.com/photo/2012/12/21/10/06/banner-71562_1280.jpg') no-repeat center/cover;
+      opacity: 0.8;
+      z-index: 1;
+    }
+
+    .benefits .container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .benefits h2 {
+      font-size: 4rem;
+      margin-bottom: 60px;
+      text-align: center;
+      font-weight: 700;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .benefits h2 span {
+      font-size: 3.5rem;
+      text-transform: uppercase;
+    }
+
+    .benefits h2 img {
+      height: 100px;
+    }
+
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 30px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      max-width: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: var(--azul-oscuro);
+    }
+
+    .card p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: var(--azul-oscuro);
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+      .benefits::before {
+        opacity: 0.3;
+      }
+    }
+
+    .levels {
+      background: linear-gradient(180deg, white, var(--turquesa));
+      color: var(--azul-oscuro);
+      padding: 60px 20px;
+      border-radius: 50px 50px 0 0;
+    }
+
+    .levels h2 {
+      font-size: 3rem;
+      margin-bottom: 40px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .course-categories {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .course-card {
+      flex: 1;
+      padding: 40px;
+      border-radius: 30px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .course-card:first-child {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                  url('https://i0.wp.com/www.actividadesdeinfantilyprimaria.com/wp-content/uploads/2024/04/ninos-estudiando-scaled.jpg?ssl=1') center/cover no-repeat;
+    }
+
+    .course-card:last-child {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                  url('https://us.images.westend61.de/0001744053pw/jovenes-universitarios-felices-estudiando-con-libros-en-la-universidad-grupo-de-personas-multirraciales-en-el-aula-JLPSF17126.jpg') center/cover no-repeat;
+    }
+
+    .course-card h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .course-card p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: white;
+      opacity: 0.9;
+    }
+
+    .course-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 100%;
+      height: 4px;
+      background: var(--turquesa);
+      transition: transform 0.3s ease;
+    }
+
+    .course-card.active::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    .course-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .level-cards {
+      display: none;
+      gap: 20px;
+      overflow: hidden;
+      padding: 20px 0;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: all 0.5s ease;
+      justify-content: center;
+      max-width: 100%;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .level-cards.active {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .level-card {
+      flex: 0 0 180px;
+      height: 280px;
+      border-radius: 20px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.5s ease;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transform: scale(0.9);
+      opacity: 0.7;
+    }
+
+    .level-card:hover {
+      transform: scale(1.05);
+      opacity: 1;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .level-card.active {
+      transform: scale(1.1);
+      opacity: 1;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+      transition: all 0.3s ease;
+    }
+
+    .carousel-arrow:hover {
+      background: var(--turquesa);
+      color: white;
+    }
+
+    .carousel-arrow.prev {
+      left: 10px;
+    }
+
+    .carousel-arrow.next {
+      right: 10px;
+    }
+
+    #kids-levels {
+      max-width: 660px;
+      margin: 0 auto;
+    }
+
+    #adults-levels {
+      max-width: 660px;
+      margin: 0 auto;
+      justify-content: center;
+      padding: 0 20px;
+    }
+
+    #adults-levels .level-card {
+      flex: 0 0 180px;
+      height: 280px;
+      font-size: 1.1rem;
+    }
+
+    .level-detail {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: white;
+      color: var(--azul-oscuro);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 40px;
+      z-index: 999;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .level-detail.active {
+      display: flex;
+    }
+
+    .cta-final {
+      background: linear-gradient(180deg, var(--turquesa), var(--azul-oscuro));
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      border-top-left-radius: 40px;
+      border-top-right-radius: 40px;
+      animation: fadeUp 1.2s ease-in-out;
+    }
+
+    .cta-final h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    .footer {
+      background-color: var(--azul-oscuro);
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeDown {
+      0% { opacity: 0; transform: translateY(-30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .nivel-a1 {
+      background: linear-gradient(to bottom, rgba(163, 212, 247, 0.9), rgba(163, 212, 247, 0.9)), url('https://st.depositphotos.com/2379655/54089/v/380/depositphotos_540894546-stock-illustration-student-girl-speaking-english-vector.jpg') center/cover no-repeat;
+      color: #002C47;
+    }
+
+    .nivel-a2 {
+      background: linear-gradient(to bottom, rgba(28, 169, 201, 0.9), rgba(28, 169, 201, 0.9)), url('https://st2.depositphotos.com/2379655/47008/v/380/depositphotos_470086242-stock-illustration-little-boy-learning-speak-english.jpg') center/cover no-repeat;
+      color: white;
+    }
+
+    .nivel-b1 {
+      background: linear-gradient(to bottom, rgba(247, 181, 0, 0.9), rgba(247, 181, 0, 0.9)), url('https://st2.depositphotos.com/2379655/48965/v/380/depositphotos_489652650-stock-illustration-asian-girl-learning-english-vector.jpg') center/cover no-repeat;
+      color: #002C47;
+    }
+
+    .nivel-b2 {
+      background: linear-gradient(to bottom, rgba(247, 127, 0, 0.9), rgba(247, 127, 0, 0.9)), url('https://st.depositphotos.com/2379655/54089/v/380/depositphotos_540894550-stock-illustration-student-boy-speaking-english-vector.jpg') center/cover no-repeat;
+      color: white;
+    }
+
+    .nivel-c1 {
+      background: linear-gradient(to bottom, rgba(0, 44, 71, 0.9), rgba(0, 44, 71, 0.9)), url('https://st2.depositphotos.com/2379655/47227/v/380/depositphotos_472273492-stock-illustration-teen-girl-speaking-english-vector.jpg') center/cover no-repeat;
+      color: white;
+    }
+
+    .nivel-c2 {
+      background: linear-gradient(to bottom, rgba(0, 26, 45, 0.9), rgba(0, 26, 45, 0.9)), url('https://st2.depositphotos.com/2379655/47052/v/380/depositphotos_470523368-stock-illustration-asian-businesswoman-speaking-english-vector.jpg') center/cover no-repeat;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+   <div class="social-floating">
+    <a href="https://www.facebook.com/worldenglishcentrodeidiomas" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+    </a>
+    <a href="https://www.instagram.com/worldenglishcentrodeidiomas/" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+    </a>
+    <a href="https://wa.me/573045713417" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+    </a>
+  </div>
+
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#cursos">Cursos</a>
+        <img src="https://worldenglish.edu.co/wp-content/uploads/2021/05/logo-blanco2.png" alt="Word English Logo" class="logo">
+        <a href="#niveles">Niveles</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Aprende inglés desde cero hasta avanzado desde casa.</h1>
+        <p>Con nuestros cursos virtuales, domina el idioma a tu ritmo</p>
+        <a href="#niveles" class="btn-cta">¡Empieza hoy!</a>
+      </div>
+      <div class="hero-image">
+        <img src="https://worldenglish.edu.co/wp-content/uploads/2021/05/logo-world-E-768x464.png" alt="Word English Logo">
+      </div>
+    </div>
+  </section>
+
+  <section class="benefits" id="cursos">
+    <div class="container">
+      <h2>¿Por qué elegir</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Aprende a tu ritmo</h3>
+          <p>En Word English tú decides cuándo y cómo aprender. Olvídate de horarios rígidos o desplazamientos. Puedes estudiar a cualquier hora, desde cualquier lugar y avanzar a tu propio ritmo, sin presiones. Ideal si trabajas, estudias o tienes poco tiempo.</p>
+        </div>
+        <div class="card">
+          <h3>Certificado por nivel</h3>
+          <p>Cada vez que completes un nivel, recibirás un certificado que valida tu progreso. Esto no solo demuestra tu esfuerzo, también puede abrirte puertas laborales, académicas o personales. ¡Tu avance se ve y se reconoce!</p>
+        </div>
+        <div class="card">
+          <h3>Clases interactivas</h3>
+          <p>Nada de clases aburridas. Aquí aprenderás con videos dinámicos, ejercicios prácticos y evaluaciones integradas que te ayudarán a reforzar lo aprendido. Todo está diseñado para que aprendas de forma activa, entretenida y efectiva.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="levels" id="niveles">
+    <div class="container">
+      <h2>Niveles disponibles</h2>
+      <div class="course-categories">
+        <div class="course-card" onclick="toggleLevels('kids')">
+          <h3>Cursos para niños</h3>
+          <p>Aprende inglés de forma divertida</p>
+        </div>
+        <div class="course-card" onclick="toggleLevels('adults')">
+          <h3>Cursos para Jóvenes y Adultos</h3>
+          <p>Aprende inglés a tu ritmo</p>
+        </div>
+      </div>
+      
+      <div class="level-cards" id="kids-levels">
+        <div class="level-card nivel-a1" data-nivel="A1">A1 - Principiante</div>
+        <div class="level-card nivel-a2" data-nivel="A2">A2 - Básico</div>
+        <div class="level-card nivel-b1" data-nivel="B1">B1 - Preintermedio</div>
+      </div>
+
+      <div class="level-cards" id="adults-levels">
+        <div class="level-card nivel-a1" data-nivel="A1">A1 - Básico</div>
+        <div class="level-card nivel-a2" data-nivel="A2">A2 - Intermedio</div>
+        <div class="level-card nivel-b1" data-nivel="B1">B1 - Avanzado</div>
+      </div>
+    </div>
+  </section>
+   <!-- 🔵 SOBRE NOSOTROS -->
+  <section class="about" id="sobre-nosotros" style="background: linear-gradient(180deg, #ffffff, var(--azul-claro)); padding: 60px 20px; border-radius: 50px 50px 0 0; animation: fadeUp 1.2s ease-in-out;">
+    <div class="container">
+      <h2>Sobre Nosotros</h2>
+      <p>World English inició labores en el año 2013 y cubrimos la población de niños, jóvenes y adultos de Jamundí y del sur de Cali e igualmente de algunos municipios del Norte del Cauca. Ofrecemos cursos de INGLÉS INTENSIVO (en solo 6 meses cubrimos A1+A2+B1), SEMI-INTENSIVO modalidad trimestral 3 días a la semana y los cursos de los SÁBADOS (mañana y tarde). 
+
+No somos vendedores de cursos ni de libros, ni de CD's o Memorias para aprender en casa. No enseñamos Inglés durmiendo ni hacemos milagros. Enseñamos Inglés de manera presencial. Enseñamos inglés en grupos pequeños (máximo 14 por grupo). 
+
+Se pretende acercar el aprendizaje del Inglés a toda la comunidad de nuestra zona de influencia empresarial y geográfica.
+
+Impartimos la enseñanza de los Idiomas extranjeros bajo el estándar del "Marco Común Europeo para Enseñanza de Idiomas" que es el implantado en Colombia por el Ministerio de Educación Nacional, el cual define los niveles de logro A1, A2, B1, B2, C1, C2.</p>
+    </div>
+  </section>
+
+  <section class="cta-final" id="contacto">
+    <div class="container">
+      <h2>¡Bye bye miedo al inglés. Hello Word English.!</h2>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Word English. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    let currentIndex = 0;
+    let carouselInterval;
+
+    function moveCarousel(elementId, direction) {
+      const container = document.getElementById(elementId);
+      const cards = container.querySelectorAll('.level-card');
+      
+      // Remover clase active de todas las tarjetas
+      cards.forEach(card => card.classList.remove('active'));
+      
+      currentIndex = (currentIndex + direction + cards.length) % cards.length;
+      
+      // Añadir clase active a la tarjeta actual
+      cards[currentIndex].classList.add('active');
+      
+      // Calcular la posición de desplazamiento
+      const cardWidth = 220; // Ancho de tarjeta + gap
+      const scrollPosition = currentIndex * cardWidth;
+      container.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+
+      // Reiniciar el intervalo
+      clearInterval(carouselInterval);
+      startCarousel(elementId);
+    }
+
+    function startCarousel(elementId) {
+      carouselInterval = setInterval(() => {
+        moveCarousel(elementId, 1);
+      }, 5000);
+    }
+
+    function toggleLevels(type) {
+      const kidsLevels = document.getElementById('kids-levels');
+      const adultsLevels = document.getElementById('adults-levels');
+      const kidsCard = document.querySelector('.course-card:first-child');
+      const adultsCard = document.querySelector('.course-card:last-child');
+      
+      if (type === 'kids') {
+        kidsLevels.classList.toggle('active');
+        adultsLevels.classList.remove('active');
+        kidsCard.classList.toggle('active');
+        adultsCard.classList.remove('active');
+        if (kidsLevels.classList.contains('active')) {
+          currentIndex = 0;
+          startCarousel('kids-levels');
+        }
+      } else {
+        adultsLevels.classList.toggle('active');
+        kidsLevels.classList.remove('active');
+        adultsCard.classList.toggle('active');
+        kidsCard.classList.remove('active');
+        if (adultsLevels.classList.contains('active')) {
+          currentIndex = 0;
+          startCarousel('adults-levels');
+        }
+      }
+    }
+
+    // Iniciar el carrusel cuando la página cargue
+    document.addEventListener('DOMContentLoaded', () => {
+      const kidsLevels = document.getElementById('kids-levels');
+      const adultsLevels = document.getElementById('adults-levels');
+      
+      if (kidsLevels.classList.contains('active')) {
+        startCarousel('kids-levels');
+      }
+      if (adultsLevels.classList.contains('active')) {
+        startCarousel('adults-levels');
+      }
+    });
+  </script>
+</body>
+</html>
